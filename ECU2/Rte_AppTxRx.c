@@ -15,7 +15,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Distance_Distance( VAR(AUTOSAR_u
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     VAR(Std_ReturnType, AUTOMATIC) ret;
-    VAR(AUTOSAR_uint8, AUTOMATIC) tmp_data = data;
+    VAR(AUTOSAR_uint16, AUTOMATIC) tmp_data = data;
 
     ret = Com_SendSignal( ComConf_ComSignal_ComISignal_HS_CAN1_Distance_Sig, &tmp_data );
     switch( ret ) {
