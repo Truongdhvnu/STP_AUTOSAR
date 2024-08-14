@@ -9,7 +9,7 @@ typedef enum
 
 static Emergency_Braking_Service_Status AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 
-void DetermineBrakingAction() 
+FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMATIC) ) 
 {   
     Rte_Call_WdgMCheckpointReached(SE2_ID, CP_ID_5);
     Rte_Call_WdgMCheckpointReached(SE2_ID, CP_ID_1);
@@ -43,7 +43,7 @@ void DetermineBrakingAction()
     Rte_Call_WdgMCheckpointReached(SE2_ID, CP_ID_2); 	
 }
 
-void ExecuteBraking() 
+FUNC(void, ExecuteBraking_CODE) ExecuteBraking(VAR(void, AUTOMATIC) ) 
 {
 	Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_3);
 
@@ -56,12 +56,12 @@ void ExecuteBraking()
     Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_6);
 }
 
-void ActivateEmergencyBraking() 
+FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
 {
     AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 }
 
-void DeActivateEmergencyBraking()
+FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
 {
     AEB_status = EMERGENCY_BRAKING_SERVICE_OFF;
 }
