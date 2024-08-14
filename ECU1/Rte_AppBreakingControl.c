@@ -28,30 +28,12 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_AEB_Apply_Apply( P2VAR(AUTOSAR_uint8,
     return ret_val;
 }
 
-Dio_LevelType Dio_ReadChannel (
-Dio_ChannelType ChannelId
-)
-
-
-FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_AEB_Apply_Apply( P2VAR(AUTOSAR_uint8, AUTOMATIC, RTE_APPL_DATA) data ) 
-{
-    VAR(Std_ReturnType, AUTOMATIC) ret_val = E_OK;
-
-    *data = Rte_AEB_Apply_value;
-
-    return ret_val;
-}
-
 FUNC(void, RTE_CODE) Rte_DetermineBrakingAction( VAR(void, AUTOMATIC) ) 
 {
-
     DetermineBrakingAction();
-
 }
 
 FUNC(void, RTE_CODE) Rte_ExecuteBraking( VAR(void, AUTOMATIC) ) 
 {
-
     ExecuteBraking();
-
 }
