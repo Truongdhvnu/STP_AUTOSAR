@@ -1,4 +1,4 @@
-void ReadDistance_5ms() 
+FUNC(void, ReadDistance_CODE) ReadDistance_5ms(VAR(void, AUTOMATIC) ) 
 {
     /*
         Call RTE Port API to get raw distance data and modify it 
