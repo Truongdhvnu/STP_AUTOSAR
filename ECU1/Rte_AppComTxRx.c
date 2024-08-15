@@ -1,3 +1,5 @@
+#include "OS.h"
+
 VAR(AUTOSAR_uint16, AUTOMATIC) Rte_AEB_Distance_value;
 VAR(Std_ReturnType, AUTOMATIC) Rte_AEB_Distance_status;
 
@@ -22,7 +24,7 @@ FUNC (void, RTE_CODE) Rte_COMCbk_DistanceSensorData_Rx (void)
         (void) GetSpinlock (Rte_Spinlock_DistanceSensorData_Rx);
         (void) Com_ReceiveSignal(ComSignal_DistanceSensorData_RawData_Rx_ID, &Rte_AEB_Distance_value);
 
-        (void) SetEvent (Task_BrakingControl_ID, Rte_Ev_Run_NetASIL_Runnable_OnDataReception_ADataRawSafe);
+        (void) SetEvent (Task_BrakingControl_ID, Rte_Ev_Run_Runable_OnDataReception_Distance_Received);
     }
 }
 

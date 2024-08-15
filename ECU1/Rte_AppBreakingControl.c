@@ -1,3 +1,4 @@
+#include "OS.h"
 VAR(AUTOSAR_uint8, AUTOMATIC) Rte_AEB_Apply_value;
 
 /*******************************************************************************/
@@ -43,6 +44,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_AEB_Apply_Apply( P2VAR(AUTOSAR_uint8,
     return ret_val;
 }
 
+extern FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMATIC) ) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -61,6 +63,7 @@ FUNC(void, RTE_CODE) Rte_DetermineBrakingAction( VAR(void, AUTOMATIC) )
     DetermineBrakingAction();
 }
 
+extern FUNC(void, ExecuteBraking_CODE) ExecuteBraking(VAR(void, AUTOMATIC) ) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -78,6 +81,7 @@ FUNC(void, RTE_CODE) Rte_ExecuteBraking( VAR(void, AUTOMATIC) )
     ExecuteBraking();
 }
 
+extern FUNC(void, UserReadInput_30ms_CODE) UserReadInput_30ms(VAR(void, AUTOMATIC) ) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -95,6 +99,7 @@ FUNC(void, RTE_CODE) Rte_UserReadInput_30ms( VAR(void, AUTOMATIC) )
     UserReadInput_30ms();
 }
 
+extern FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUTOMATIC) ) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -112,6 +117,7 @@ FUNC(void, RTE_CODE) Rte_Call_RP_AEBSetting_Enable( VAR(void, AUTOMATIC) )
     ActivateEmergencyBraking();
 }
 
+extern FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */

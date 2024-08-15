@@ -1,3 +1,5 @@
+#include "Wdg.h"
+
 typedef enum  
 {
     EMERGENCY_BRAKING_SERVICE_OFF,
@@ -6,6 +8,7 @@ typedef enum
 
 static Emergency_Braking_Service_Status AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 
+extern FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_AEB_Distance_Distance( P2VAR(AUTOSAR_uint16, AUTOMATIC, RTE_APPL_DATA) data );
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
