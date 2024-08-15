@@ -36,7 +36,7 @@ TASK (Task_DistanceSensor) {
     {
         (VAR(void, AUTOMATIC))WaitEvent( Rte_Ev_ReadDistance_5ms );
         Event = 0U;
-        (VAR(void, AUTOMATIC))GetEvent( Rte_Ev_ReadDistance_5ms, &Event );
+        (VAR(void, AUTOMATIC))GetEvent( Task_DistanceSensor, &Event );
         (VAR(void, AUTOMATIC))ClearEvent( Event & (Rte_Ev_ReadDistance_5ms));
 
         if( (Event & Rte_Ev_ReadDistance_5ms) > 0U ) 

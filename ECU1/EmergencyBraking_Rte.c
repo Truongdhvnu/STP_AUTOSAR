@@ -36,7 +36,7 @@ TASK (Task_BrakingControl)
     {
         (VAR(void, AUTOMATIC))WaitEvent( Rte_Ev_Run_Runable_OnDataReception_Distance_Received );
         Event = 0U;
-        (VAR(void, AUTOMATIC))GetEvent( Rte_Ev_Run_Runable_OnDataReception_Distance_Received, &Event );
+        (VAR(void, AUTOMATIC))GetEvent( Task_BrakingControl, &Event );
         (VAR(void, AUTOMATIC))ClearEvent( Event & (Rte_Ev_Run_Runable_OnDataReception_Distance_Received));
 
         if( (Event & Rte_Ev_Run_Runable_OnDataReception_Distance_Received) > 0U ) 
@@ -69,7 +69,7 @@ TASK (Task_BrakingExecute)
     {
         (VAR(void, AUTOMATIC))WaitEvent( Rte_Ev_Run_Runable_OnDataReception_BrakeControl_Received );
         Event = 0U;
-        (VAR(void, AUTOMATIC))GetEvent( Rte_Ev_Run_Runable_OnDataReception_BrakeControl_Received, &Event );
+        (VAR(void, AUTOMATIC))GetEvent( Task_BrakingExecute, &Event );
         (VAR(void, AUTOMATIC))ClearEvent( Event & (Rte_Ev_Run_Runable_OnDataReception_BrakeControl_Received));
 
         if( (Event & Rte_Ev_Run_Runable_OnDataReception_BrakeControl_Received) > 0U ) 
@@ -103,7 +103,7 @@ TASK (Task_UserControl)
     {
         (VAR(void, AUTOMATIC))WaitEvent( Rte_Ev_ReadUserInput_30ms );
         Event = 0U;
-        (VAR(void, AUTOMATIC))GetEvent( Rte_Ev_ReadUserInput_30ms, &Event );
+        (VAR(void, AUTOMATIC))GetEvent( Task_UserControl, &Event );
         (VAR(void, AUTOMATIC))ClearEvent( Event & (Rte_Ev_ReadUserInput_30ms));
 
         if( (Event & Rte_Ev_ReadUserInput_30ms) > 0U ) 
