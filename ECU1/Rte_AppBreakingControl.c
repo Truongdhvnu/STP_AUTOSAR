@@ -77,3 +77,54 @@ FUNC(void, RTE_CODE) Rte_ExecuteBraking( VAR(void, AUTOMATIC) )
 {
     ExecuteBraking();
 }
+
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Rte_UserReadInput_30ms                                        */
+/* Trigger     : Rte_Ev_ReadUserInput_30ms                                     */
+/* Param       : None                                                          */
+/* Return      : None                                                          */
+/* Contents    : Calls the UserReadInput_30ms function to read user input      */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function is called by the RTE to execute the logic for   */
+/*               reading user input                                            */
+/*******************************************************************************/
+FUNC(void, RTE_CODE) Rte_UserReadInput_30ms( VAR(void, AUTOMATIC) ) 
+{
+    UserReadInput_30ms();
+}
+
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Rte_Call_RP_AEBSetting_Enable                                 */
+/* Trigger     :                                                               */
+/* Param       : None                                                          */
+/* Return      : None                                                          */
+/* Contents    : Calls the ActivateEmergencyBraking function to enable AEB     */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function is called by the RTE to execute the logic for   */
+/*               enabling the AEB setting                                      */
+/*******************************************************************************/
+FUNC(void, RTE_CODE) Rte_Call_RP_AEBSetting_Enable( VAR(void, AUTOMATIC) ) 
+{
+    ActivateEmergencyBraking();
+}
+
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Rte_Call_RP_AEBSetting_Disable                                */
+/* Trigger     :                                                               */
+/* Param       : None                                                          */
+/* Return      : None                                                          */
+/* Contents    : Calls the DeActivateEmergencyBraking function to disable AEB  */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function is called by the RTE to execute the logic for   */
+/*               disabling the AEB setting                                     */
+/*******************************************************************************/
+FUNC(void, RTE_CODE) Rte_Call_RP_AEBSetting_Disable( VAR(void, AUTOMATIC) ) 
+{
+    DeActivateEmergencyBraking();
+}

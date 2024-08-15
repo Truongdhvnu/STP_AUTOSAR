@@ -43,3 +43,28 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetSpeed( VAR(AppIo_IoHwAb_IdTy
     return_value = IoHwAb_AdcGetSpeed(id, speedValue);
     return return_value;
 }
+
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Rte_Call_R_IoHwAb_GetUserInput                                */
+/* Trigger     :                                                               */
+/* Param       : id - Identifier for the user button hardware                  */
+/*               userInput - Variable to store the retrieved user input data   */
+/* Return      : Std_ReturnType - E_OK if successful, or an error code         */
+/* Contents    : This function calls the IoHwAb (Input/Output Hardware         */
+/*               Abstraction) layer to retrieve user input data from a         */
+/*               specified hardware ID. The data is stored in the              */
+/*               userInput parameter.                                          */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function acts as a bridge between the RTE and the        */
+/*               underlying hardware abstraction layer, ensuring the correct   */
+/*               user input data is retrieved based on the specified ID.       */
+/*******************************************************************************/
+FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetUserInput( VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, P2VAR(UserButtonType, AUTOMATIC, RTE_APPL_DATA) userInput) 
+{
+    VAR(Std_ReturnType, AUTOMATIC) return_value = E_OK;
+
+    return_value = IoHwAb_AdcGetUserInput(id, userInput);
+    return return_value;
+}

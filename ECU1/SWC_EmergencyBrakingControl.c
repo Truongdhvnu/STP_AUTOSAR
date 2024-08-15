@@ -1,6 +1,3 @@
-#include "Rte.h"
-#include "Rte_appComTxRx.h"
-
 typedef enum  
 {
     EMERGENCY_BRAKING_SERVICE_OFF,
@@ -8,7 +5,6 @@ typedef enum
 } Emergency_Braking_Service_Status;
 
 static Emergency_Braking_Service_Status AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
-
 
 /*******************************************************************************/
 /* ModuleID    :                                                               */
@@ -61,32 +57,6 @@ FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMAT
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
-/* Name        : ExecuteBraking                                                */
-/* Trigger     :                                                               */
-/* Param       : VAR(void, AUTOMATIC)                                          */
-/* Return      : void                                                          */
-/* Contents    : Executes the braking action by applying the required braking  */
-/*               force based on the logic defined. Updates watchdog checkpoints*/
-/* Author      : HN24_FR_Autosar_G01A                                          */
-/* Note        : This function calls RTE ports to apply the braking force      */
-/*               and updates the watchdog checkpoints accordingly.             */
-/*******************************************************************************/
-FUNC(void, ExecuteBraking_CODE) ExecuteBraking(VAR(void, AUTOMATIC) ) 
-{
-	Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_3);
-
-    /*
-        Call RTE Port to braking action required
-        Then Execute logic and apply braking force accordingly
-    */
-
-    Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_4);
-    Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_6);
-}
-
-/*******************************************************************************/
-/* ModuleID    :                                                               */
-/* ServiceID   :                                                               */
 /* Name        : ActivateEmergencyBraking                                      */
 /* Trigger     :                                                               */
 /* Param       : VAR(void, AUTOMATIC)                                          */
@@ -118,28 +88,4 @@ FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUT
 FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
 {
     AEB_status = EMERGENCY_BRAKING_SERVICE_OFF;
-}
-
-/*******************************************************************************/
-/* ModuleID    :                                                               */
-/* ServiceID   :                                                               */
-/* Name        : UserReadInput_30ms                                            */
-/* Trigger     :                                                               */
-/* Param       : None                                                          */
-/* Return      : None                                                          */
-/* Contents    : This function reads user input data through the RTE port,     */
-/* Author      : HN24_FR_Autosar_G01A                                          */
-/* Note        : This function is  called at a 30ms interval to ensure timely  */
-/*               updates of user input                                         */
-/*******************************************************************************/
-FUNC(void, UserReadInput_30ms_CODE) UserReadInput_30ms(VAR(void, AUTOMATIC) ) 
-{
-    UserButtonType status;
-    static UserButtonType previous_status;
-    Rte_Call_R_IoHwAb_GetUserInput(USER_BUTTON_HW_ID, &status);
-    if(status != previous_status)
-    {
-        Rte_Call_RP_AEBSetting_Setting(status);
-    }
-    previous_status=status;
 }
