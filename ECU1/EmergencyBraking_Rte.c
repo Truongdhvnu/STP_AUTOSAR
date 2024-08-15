@@ -15,6 +15,18 @@
 #include "Com.h"
 #include "Rte_Internal.h"
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Task_BrakingControl                                           */
+/* Trigger     :                                                               */
+/* Param       :                                                               */
+/* Return      :                                                               */
+/* Contents    : Task for controlling braking based on received distance data  */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This task waits for events related to distance data reception */
+/*               determines the necessary braking action, and processes it.    */
+/*******************************************************************************/
 TASK (Task_BrakingControl) 
 {
     VAR(EventMaskType, AUTOMATIC) Event;
@@ -34,6 +46,19 @@ TASK (Task_BrakingControl)
     }
 }
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Task_BrakingExecute                                           */
+/* Trigger     :                                                               */
+/* Param       :                                                               */
+/* Return      :                                                               */
+/* Contents    : Task for executing braking actions based on received brake    */
+/*               control data.                                                 */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This task waits for events related to brake control data      */
+/*               reception, executes the braking action, and processes it.     */
+/*******************************************************************************/
 TASK (Task_BrakingExecute) 
 {
     VAR(EventMaskType, AUTOMATIC) Event;

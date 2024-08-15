@@ -11,6 +11,19 @@
 /*----------------------------------------------------------------------------*/
 #include "Rte_App.h"
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Rte_Write_PP_AEB_Distance_Distance                            */
+/* Trigger     :                                                               */
+/* Param       : data - The distance data to be written                        */
+/* Return      : Std_ReturnType - E_OK if successful, error codes otherwise    */
+/* Contents    : This function sends the distance data over the CAN bus        */
+/*               using the Com_SendSignal API. It handles possible errors      */
+/*               such as COM_BUSY and COM_SERVICE_NOT_AVAILABLE.               */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : The data is sent using the signal configured for the CAN bus. */
+/*******************************************************************************/
 FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Distance_Distance( VAR(AUTOSAR_uint8, AUTOMATIC) data) 
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
@@ -35,6 +48,19 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Distance_Distance( VAR(AUTOSAR_u
 
 extern FUNC(void, ReadDistance_CODE) ReadDistance_5ms(VAR(void, AUTOMATIC) ) ;
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Rte_ReadDistance_5ms                                          */
+/* Trigger     : Rte_Ev_ReadDistance_5ms                                       */
+/* Param       :                                                               */
+/* Return      : void                                                          */
+/* Contents    : This function calls the ReadDistance_5ms function to handle   */
+/*               the distance reading process every 5 ms.                      */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : The distance data is processed as per the implementation in   */
+/*               the ReadDistance_5ms function.                                */
+/*******************************************************************************/
 FUNC(void, RTE_CODE) Rte_ReadDistance_5ms( VAR(void, AUTOMATIC) ) 
 {
 

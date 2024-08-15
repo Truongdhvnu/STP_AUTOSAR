@@ -15,6 +15,20 @@
 #include "Com.h"
 #include "Rte_Internal.h"
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : Task_DistanceSensor                                           */
+/* Trigger     :                                                               */
+/* Param       :                                                               */
+/* Return      :                                                               */
+/* Contents    : Task responsible for handling distance sensor data reception  */
+/*               and processing at 5ms intervals. It waits for the event       */
+/*               Rte_Ev_ReadDistance_5ms to trigger the read operation.        */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : The task reads the distance data when the event is triggered  */
+/*               and processes it to be used by other system components.       */
+/*******************************************************************************/
 TASK (Task_DistanceSensor) {
     VAR(EventMaskType, AUTOMATIC) Event;
 

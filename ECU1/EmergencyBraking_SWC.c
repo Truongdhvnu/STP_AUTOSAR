@@ -9,6 +9,21 @@ typedef enum
 
 static Emergency_Braking_Service_Status AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 
+
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : DetermineBrakingAction                                        */
+/* Trigger     :                                                               */
+/* Param       : VAR(void, AUTOMATIC)                                          */
+/* Return      : void                                                          */
+/* Contents    : Determines the braking action based on distance data and      */
+/*               vehicle speed.                                                */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function retrieves distance data, calculates the braking */
+/*               force needed based on distance and speed, and updates the     */
+/*               braking force accordingly.                                    */
+/*******************************************************************************/
 FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMATIC) ) 
 {   
     Rte_Call_WdgMCheckpointReached(SE2_ID, CP_ID_5);
@@ -43,6 +58,19 @@ FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMAT
     Rte_Call_WdgMCheckpointReached(SE2_ID, CP_ID_2); 	
 }
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : ExecuteBraking                                                */
+/* Trigger     :                                                               */
+/* Param       : VAR(void, AUTOMATIC)                                          */
+/* Return      : void                                                          */
+/* Contents    : Executes the braking action by applying the required braking  */
+/*               force based on the logic defined. Updates watchdog checkpoints*/
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function calls RTE ports to apply the braking force      */
+/*               and updates the watchdog checkpoints accordingly.             */
+/*******************************************************************************/
 FUNC(void, ExecuteBraking_CODE) ExecuteBraking(VAR(void, AUTOMATIC) ) 
 {
 	Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_3);
@@ -56,11 +84,37 @@ FUNC(void, ExecuteBraking_CODE) ExecuteBraking(VAR(void, AUTOMATIC) )
     Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_6);
 }
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : ActivateEmergencyBraking                                      */
+/* Trigger     :                                                               */
+/* Param       : VAR(void, AUTOMATIC)                                          */
+/* Return      : void                                                          */
+/* Contents    : Activates the emergency braking system by setting the AEB     */
+/*               status to EMERGENCY_BRAKING_SERVICE_ON.                       */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function updates the AEB status to indicate that the     */
+/*               emergency braking service is active.                          */
+/*******************************************************************************/
 FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
 {
     AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 }
 
+/*******************************************************************************/
+/* ModuleID    :                                                               */
+/* ServiceID   :                                                               */
+/* Name        : DeActivateEmergencyBraking                                     */
+/* Trigger     :                                                               */
+/* Param       : VAR(void, AUTOMATIC)                                           */
+/* Return      : void                                                           */
+/* Contents    : Deactivates the emergency braking system by setting the AEB    */
+/*               status to EMERGENCY_BRAKING_SERVICE_OFF.                        */
+/* Author      : HN24_FR_Autosar_G01A                                          */
+/* Note        : This function updates the AEB status to indicate that the       */
+/*               emergency braking service is inactive.                         */
+/*******************************************************************************/
 FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
 {
     AEB_status = EMERGENCY_BRAKING_SERVICE_OFF;
