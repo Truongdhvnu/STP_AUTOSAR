@@ -1,5 +1,6 @@
 #include "Rte_AppDistance.h"
 
+extern FUNC(void, IoHwAb_CODE) IoHwAb_GetDistance(VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC, RTE_APPL_DATA) distanceValue) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -18,6 +19,6 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetDistance(VAR(AppIo_IoHwAb_Id
 {
     VAR(Std_ReturnType, AUTOMATIC) return_value;
 
-    return_value = IoHwAb_AdcGetDistance(id, distanceValue);
+    return_value = IoHwAb_GetDistance(id, distanceValue);
     return return_value;
 }

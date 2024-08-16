@@ -19,13 +19,9 @@ VAR(Std_ReturnType, AUTOMATIC) Rte_AEB_Distance_status;
 /*******************************************************************************/
 FUNC (void, RTE_CODE) Rte_COMCbk_DistanceSensorData_Rx (void)
 {
-    if (Rte_InitState == RTE_STATE_INIT)
-    {
-        (void) GetSpinlock (Rte_Spinlock_DistanceSensorData_Rx);
-        (void) Com_ReceiveSignal(ComSignal_DistanceSensorData_RawData_Rx_ID, &Rte_AEB_Distance_value);
+    (void) Com_ReceiveSignal(ComSignal_DistanceSensorData_RawData_Rx_ID, &Rte_AEB_Distance_value);
 
-        (void) SetEvent (Task_BrakingControl_ID, Rte_Ev_Run_Runable_OnDataReception_Distance_Received);
-    }
+    (void) SetEvent (Task_BrakingControl_ID, Rte_Ev_Run_Runable_OnDataReception_Distance_Received);
 }
 
 /*******************************************************************************/

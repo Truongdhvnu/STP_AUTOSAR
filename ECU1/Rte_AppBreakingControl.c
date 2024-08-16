@@ -137,6 +137,7 @@ FUNC(void, RTE_CODE) Rte_Call_RP_AEBSetting_Disable( VAR(void, AUTOMATIC) )
     DeActivateEmergencyBraking();
 }
 
+extern FUNC(void, IoHwAb_CODE) IoHwAb_BrakeControl(VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_BrakeValueType, AUTOMATIC) brakeValue) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -159,6 +160,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_SetBrake(VAR(AppIo_IoHwAb_IdTyp
     return return_value;
 }
 
+extern FUNC(void, IoHwAb_CODE) IoHwAb_GetSpeed(VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_SpeedValueType, AUTOMATIC) speedValue) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -177,10 +179,11 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetSpeed( VAR(AppIo_IoHwAb_IdTy
 {
     VAR(Std_ReturnType, AUTOMATIC) return_value;
 
-    return_value = IoHwAb_AdcGetSpeed(id, speedValue);
+    return_value = IoHwAb_GetSpeed(id, speedValue);
     return return_value;
 }
 
+extern FUNC(void, IoHwAb_CODE) IoHwAb_GetUserInput(VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_SpeedValueType, AUTOMATIC) speedValue) ;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -202,6 +205,6 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetUserInput( VAR(AppIo_IoHwAb_
 {
     VAR(Std_ReturnType, AUTOMATIC) return_value = E_OK;
 
-    return_value = IoHwAb_AdcGetUserInput(id, userInput);
+    return_value = IoHwAb_GetUserInput(id, userInput);
     return return_value;
 }
