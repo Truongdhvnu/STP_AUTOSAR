@@ -1,6 +1,6 @@
 #include "OS.h"
-VAR(AUTOSAR_uint8, AUTOMATIC) Rte_AEB_Apply_value;
 
+VAR(AUTOSAR_uint8, AUTOMATIC) Rte_AEB_Apply_value;
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -21,6 +21,7 @@ FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Apply_Apply( VAR(AUTOSAR_uint8, 
     Rte_AEB_Apply_value = data;
 
     setEvent(Task_BrakingExecute_ID, Rte_Ev_Run_Runable_OnDataReception_BrakeControl_Received)
+    
     return ret_val;
 }
 
@@ -112,9 +113,14 @@ extern FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(vo
 /* Note        : This function is called by the RTE to execute the logic for   */
 /*               enabling the AEB setting                                      */
 /*******************************************************************************/
-FUNC(void, RTE_CODE) Rte_Call_RP_AEBSetting_Enable( VAR(void, AUTOMATIC) ) 
-{
-    ActivateEmergencyBraking();
+FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_AEBSetting_Enable( VAR(void, AUTOMATIC) ) 
+{   
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = E_OK;
+
+    /* Sybchronnous server call point */
+    ret_val = ActivateEmergencyBraking();
+
+    return ret_val;
 }
 
 extern FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) ;
@@ -130,7 +136,12 @@ extern FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VA
 /* Note        : This function is called by the RTE to execute the logic for   */
 /*               disabling the AEB setting                                     */
 /*******************************************************************************/
-FUNC(void, RTE_CODE) Rte_Call_RP_AEBSetting_Disable( VAR(void, AUTOMATIC) ) 
-{
-    DeActivateEmergencyBraking();
+FUNC(Std_ReturnType, RTE_CODE) Rte_Call_RP_AEBSetting_Disable( VAR(void, AUTOMATIC) ) 
+{   
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = E_OK;
+
+    /* Sybchronnous server call point */
+    ret_val = DeActivateEmergencyBraking();
+
+    return ret_val;
 }
