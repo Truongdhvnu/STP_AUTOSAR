@@ -1,8 +1,9 @@
 #include "OS.h"
 #include "COM.h"
 #include "Rte_AppComTxRx.h"
+#include "App_Types.h"
 
-VAR(AUTOSAR_uint16, AUTOMATIC) Rte_AEB_Distance_value;
+VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC) Rte_AEB_Distance_value;
 VAR(Std_ReturnType, AUTOMATIC) Rte_AEB_Distance_status;
 
 /*******************************************************************************/
@@ -31,7 +32,7 @@ FUNC (void, RTE_CODE) Rte_COMCbk_DistanceSensorData_Rx (void)
 /* ServiceID   :                                                               */
 /* Name        : Rte_Read_RP_AEB_Distance_Distance                             */
 /* Trigger     :                                                               */
-/* Param       : P2VAR(AUTOSAR_uint16, AUTOMATIC, RTE_APPL_DATA) data          */
+/* Param       : AppIo_IoHwAb_DistanceValueType data                           */
 /* Return      : Std_ReturnType                                                */
 /* Contents    : Reads the current distance data from the Distance Sensor      */
 /*               through the RTE port.                                         */
@@ -39,7 +40,7 @@ FUNC (void, RTE_CODE) Rte_COMCbk_DistanceSensorData_Rx (void)
 /* Note        : This function retrieves the distance value stored in the RTE  */
 /*               and returns the status of the reading operation.              */
 /*******************************************************************************/
-FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_AEB_Distance_Distance( P2VAR(AUTOSAR_uint16, AUTOMATIC, RTE_APPL_DATA) data ) 
+FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_AEB_Distance_Distance( P2VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC, RTE_APPL_DATA) data ) 
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val;
 

@@ -10,7 +10,7 @@
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
 #include "Rte_Type.h"
-
+#include "Rte_MemMap.h"
 #include "Os.h"
 #include "Rte_Internal.h"
 

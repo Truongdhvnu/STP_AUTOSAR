@@ -1,10 +1,5 @@
 #include "Wdg.h"
-
-typedef enum  
-{
-    EMERGENCY_BRAKING_SERVICE_OFF,
-    EMERGENCY_BRAKING_SERVICE_ON
-} Emergency_Braking_Service_Status;
+#include "App_Types.h"
 
 static Emergency_Braking_Service_Status AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 
@@ -78,15 +73,14 @@ FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUT
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
-/* Name        : DeActivateEmergencyBraking                                     */
+/* Name        : DeActivateEmergencyBraking                                    */
 /* Trigger     :                                                               */
-/* Param       : VAR(void, AUTOMATIC)                                           */
-/* Return      : void                                                           */
-/* Contents    : Deactivates the emergency braking system by setting the AEB    */
-/*               status to EMERGENCY_BRAKING_SERVICE_OFF.                        */
+/* Param       : VAR(void, AUTOMATIC)                                          */
+/* Return      : void                                                          */
+/* Contents    : Deactivates the emergency braking system by setting the AEB   */
+/*               status to EMERGENCY_BRAKING_SERVICE_OFF.                      */
 /* Author      : HN24_FR_Autosar_G01A                                          */
-/* Note        : This function updates the AEB status to indicate that the       */
-/*               emergency braking service is inactive.                         */
+/* Note        : This function updates the AEB status to indicate that the     */
 /*******************************************************************************/
 FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
 {

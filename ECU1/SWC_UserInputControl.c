@@ -1,8 +1,4 @@
-typedef enum  
-{
-    USER_BUTTON_LOW,
-    USER_BUTTON_HIGH,
-} UserButtonType;
+#include "App_Types.h"
 
 extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetUserInput( VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, P2VAR(UserButtonType, AUTOMATIC, RTE_APPL_DATA) userInput) ;
 

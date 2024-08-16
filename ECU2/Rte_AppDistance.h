@@ -8,6 +8,7 @@
 #include "Rte_AppDistance_Type.h"
 #include "Rte_DataHandleType.h"
 #include "IoHwAb.h"
+#include "Rte_MemMap.h"
 
 #ifdef __cplusplus
 extern "C" {

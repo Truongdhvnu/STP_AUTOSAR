@@ -7,7 +7,7 @@
 /*----------------------------------------------------------------------------*/
 #include "Rte_AppComTxRx_Type.h"
 #include "Rte_DataHandleType.h"
-
+#include "Rte_MemMap.h"
 
 #ifdef __cplusplus
 extern "C" {

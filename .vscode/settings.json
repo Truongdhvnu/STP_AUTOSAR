@@ -2,6 +2,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "rte_appcomtxrx.h": "c",
-        "rte_appbreakingcontrol.h": "c"
+        "rte_appbreakingcontrol.h": "c",
+        "rte_appdistance.h": "c"
     }
 }
