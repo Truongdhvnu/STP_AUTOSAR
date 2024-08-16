@@ -12,7 +12,6 @@
 #include "Rte_Type.h"
 
 #include "Os.h"
-#include "Com.h"
 #include "Rte_Internal.h"
 
 extern FUNC(void, RTE_CODE) Rte_ReadDistance_5ms( VAR(void, AUTOMATIC) ) ;

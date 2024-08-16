@@ -7,12 +7,13 @@
 /*----------------------------------------------------------------------------*/
 #include "Rte_AppComTxRx_Type.h"
 #include "Rte_DataHandleType.h"
-
+#include "Compiler.h"
+#include "Std_Types.h"
+#include "Rte_MemMap.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
-
 
 /*----------------------------------------------------------------------------*/
 /* function prototype declarations                                            */
@@ -23,6 +24,5 @@ extern FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_AEB_Distance_Distance( P2VAR(A
 #ifdef __cplusplus
 } /* extern "C" */
 #endif /* __cplusplus */
-
 
 #endif 

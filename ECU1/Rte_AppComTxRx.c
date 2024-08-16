@@ -1,4 +1,6 @@
 #include "OS.h"
+#include "COM.h"
+#include "Rte_AppComTxRx.h"
 
 VAR(AUTOSAR_uint16, AUTOMATIC) Rte_AEB_Distance_value;
 VAR(Std_ReturnType, AUTOMATIC) Rte_AEB_Distance_status;
