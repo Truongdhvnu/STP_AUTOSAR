@@ -1,4 +1,5 @@
-#include "Wdg.h"
+#include "Rte.h"
+#include "Rte_appComTxRx.h"
 
 typedef enum  
 {
@@ -8,7 +9,16 @@ typedef enum
 
 static Emergency_Braking_Service_Status AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
 
-extern FUNC(Std_ReturnType, RTE_CODE) Rte_Read_RP_AEB_Distance_Distance( P2VAR(AUTOSAR_uint16, AUTOMATIC, RTE_APPL_DATA) data );
+static bool ParameterInitSuccessful = 0; 
+
+static AEB_UserConfig AEB_UserConfig;
+
+FUNC(void, DetermineBrakingAction_CODE) InitParameter(VAR(void, AUTOMATIC) ) 
+{
+    Rte_Call_NvM_Service_ReadBlock(AEB_UserConfig_ID, (void*) AEB_UserConfig);
+
+}
+
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -35,12 +45,23 @@ FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMAT
 	if (AEB_status == EMERGENCY_BRAKING_SERVICE_ON) {
         VAR(AUTOSAR_uint16, AUTOMATIC) velocity;  
         VAR(AUTOSAR_uint16, AUTOMATIC) distance;
+
+        VAR(AUTOSAR_float32, AUTOMATIC) reaction_time;
+        VAR(AUTOSAR_float32, AUTOMATIC) adjustment_factor;
+        VAR(AUTOSAR_float32, AUTOMATIC) d_min;
+        VAR(AUTOSAR_float32, AUTOMATIC) d_safe;
+        VAR(AUTOSAR_float32, AUTOMATIC) force_brake;
+
+        // Read Distance (cm) via R-Port
         Rte_Read_RP_AEB_Distance_Distance(&distance);
-        float reaction_time = 1.0;
-        float adjustment_factor = (velocity > 80) ? 2.0 : 1.5;  // Hệ số điều chỉnh, 2 cho tốc độ cao, 1.5 cho tốc độ thấp
-        float d_min = velocity * reaction_time;
-        float d_safe = adjustment_factor * d_min;
-        float force_brake;
+        // Read Distance (cm/s) via R-Port
+        Rte_Call_R_IoHwAb_GetSpeed(&velocity);
+
+        reaction_time = 1.0;
+        // High factor for high speed, low factor for low speed
+        adjustment_factor = pow(2, velocity/1000);
+        d_min = velocity * reaction_time;
+        d_safe = adjustment_factor * d_min;
 
         if (distance > d_safe) {
             force_brake = 0;
@@ -50,8 +71,10 @@ FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMAT
             force_brake = 100;
         }
 
-        // Giới hạn force_brake trong khoảng 0 - 100
+        // Limit force_brake in range of 0 - 100
         force_brake = (force_brake < 0) ? 0 : ((force_brake > 100) ? 100 : force_brake);
+
+        Rte_Write_RP_AEB_Apply_Apply(&force_brake);
     }
 
     Rte_Call_WdgMCheckpointReached(SE2_ID, CP_ID_2); 	
@@ -70,25 +93,39 @@ FUNC(void, DetermineBrakingAction_CODE) DetermineBrakingAction(VAR(void, AUTOMAT
 /* Note        : This function updates the AEB status to indicate that the     */
 /*               emergency braking service is active.                          */
 /*******************************************************************************/
-FUNC(void, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
-{
-    AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
+FUNC(Std_ReturnType, ActivateEmergencyBraking_CODE) ActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
+{   
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = E_OK;
+    
+    if (ParameterInitSuccessful) 
+    {
+        AEB_status = EMERGENCY_BRAKING_SERVICE_ON;
+    } else 
+    {
+        ret_val = E_NOT_OK
+    }
+
+    return ret_val;
 }
 
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
-/* Name        : DeActivateEmergencyBraking                                     */
+/* Name        : DeActivateEmergencyBraking                                    */
 /* Trigger     :                                                               */
-/* Param       : VAR(void, AUTOMATIC)                                           */
-/* Return      : void                                                           */
-/* Contents    : Deactivates the emergency braking system by setting the AEB    */
-/*               status to EMERGENCY_BRAKING_SERVICE_OFF.                        */
+/* Param       : VAR(void, AUTOMATIC)                                          */
+/* Return      : void                                                          */
+/* Contents    : Deactivates the emergency braking system by setting the AEB   */
+/*               status to EMERGENCY_BRAKING_SERVICE_OFF.                      */
 /* Author      : HN24_FR_Autosar_G01A                                          */
-/* Note        : This function updates the AEB status to indicate that the       */
-/*               emergency braking service is inactive.                         */
+/* Note        : This function updates the AEB status to indicate that the     */
+/*               emergency braking service is inactive.                        */
 /*******************************************************************************/
-FUNC(void, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
-{
+FUNC(Std_ReturnType, DeActivateEmergencyBraking_CODE) DeActivateEmergencyBraking(VAR(void, AUTOMATIC) ) 
+{   
+    VAR(Std_ReturnType, AUTOMATIC) ret_val = E_OK;
+
     AEB_status = EMERGENCY_BRAKING_SERVICE_OFF;
+
+    return ret_val;
 }
