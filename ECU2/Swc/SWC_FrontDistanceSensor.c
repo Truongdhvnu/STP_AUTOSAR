@@ -6,8 +6,6 @@
 VAR(FDSensor_Calib_parameters, AUTOMATIC) fd_sensor_calib;
 VAR(AUTOSAR_uint8, AUTOMATIC) ParameterInitSuccessful = 0; 
 
-extern Rte_Call_NvM_Service_ReadBlock_Sensor_Calib(P2VAR(void, AUTOMATIC, RTE_APPL_DATA) data);
-
 FUNC(void, DetermineBrakingAction_CODE) Parameter_Init (VAR(void, AUTOMATIC) ) 
 {
     // Asynchronous call with pooling
