@@ -19,6 +19,11 @@ FUNC(void, ExecuteBraking_CODE) ExecuteBraking(VAR(void, AUTOMATIC) )
         Call RTE Port to braking action required
         Then Execute logic and apply braking force accordingly
     */
+    VAR(AUTOSAR_uint8, AUTOMATIC) braking_force;
+    // Call RTE Port to braking action required
+    Rte_Read_RP_AEB_Apply_Apply(&braking_force);
+    // Apply braking force accordingly
+    Rte_Call_R_IoHwAb_SetBrake(BREAKING_ID, braking_force);
 
     Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_4);
     Rte_Call_WdgMCheckpointReached(SE3_ID, CP_ID_6);
