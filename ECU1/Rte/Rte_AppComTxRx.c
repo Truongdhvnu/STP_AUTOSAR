@@ -4,7 +4,7 @@
 #include "App_Types.h"
 
 VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC) Rte_AEB_Distance_value;
-VAR(Std_ReturnType, AUTOMATIC) Rte_AEB_Distance_status;
+VAR(Std_ReturnType, AUTOMATIC) Rte_AEB_Distance_status = RTE_E_NEVER_RECEIVED;
 
 /*******************************************************************************/
 /* ModuleID    :                                                               */

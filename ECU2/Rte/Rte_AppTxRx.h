@@ -1,13 +1,12 @@
-#ifndef RTE_APPDISTANCE_H
-#define RTE_APPDISTANCE_H
+#ifndef RTE_APPCOMTXRX_H
+#define RTE_APPCOMTXRX_H
 
 
 /*----------------------------------------------------------------------------*/
 /* include headers                                                            */
 /*----------------------------------------------------------------------------*/
-#include "Rte_AppDistance_Type.h"
+#include "Rte_AppComTxRx_Type.h"
 #include "Rte_DataHandleType.h"
-#include "IoHwAb.h"
 #include "Rte_MemMap.h"
 
 #ifdef __cplusplus
@@ -18,7 +17,8 @@ extern "C" {
 /*----------------------------------------------------------------------------*/
 /* function prototype declarations                                            */
 /*----------------------------------------------------------------------------*/
-extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetDistance(VAR(AppIo_IoHwAb_IdType, AUTOMATIC) id, VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC, RTE_APPL_DATA) distanceValue) ;
+extern FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Distance_Distance( VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC) data) ;
+extern FUNC(void, RTE_CODE) Rte_ReadDistance_5ms( VAR(void, AUTOMATIC) ) ;
 
 
 #ifdef __cplusplus

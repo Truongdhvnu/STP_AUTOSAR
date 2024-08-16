@@ -12,6 +12,7 @@
 #include "Rte_App.h"
 #include "COM.h"
 #include "Rte_AppTxRx.h"
+#include "App_Types.h"
 /*******************************************************************************/
 /* ModuleID    :                                                               */
 /* ServiceID   :                                                               */
@@ -25,7 +26,7 @@
 /* Author      : HN24_FR_Autosar_G01A                                          */
 /* Note        : The data is sent using the signal configured for the CAN bus. */
 /*******************************************************************************/
-FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Distance_Distance( VAR(AUTOSAR_uint8, AUTOMATIC) data) 
+FUNC(Std_ReturnType, RTE_CODE) Rte_Write_PP_AEB_Distance_Distance( VAR(AppIo_IoHwAb_DistanceValueType, AUTOMATIC) data) 
 {
     VAR(Std_ReturnType, AUTOMATIC) ret_val = RTE_E_OK;
     VAR(Std_ReturnType, AUTOMATIC) ret;

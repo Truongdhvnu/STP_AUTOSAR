@@ -16,20 +16,21 @@ extern FUNC(Std_ReturnType, RTE_CODE) Rte_Call_R_IoHwAb_GetUserInput( VAR(AppIo_
 /*******************************************************************************/
 FUNC(void, UserReadInput_30ms_CODE) UserReadInput_30ms(VAR(void, AUTOMATIC) ) 
 {
-    UserButtonType status;
-    VAR(Std_ReturnType, AUTOMATIC) ret_val;
     static UserButtonType previous_status;
+    static Std_ReturnType previous_request_status = E_OK;
+    VAR(UserButtonType, AUTOMATIC) status;
 
     Rte_Call_R_IoHwAb_GetUserInput(USER_BUTTON_HW_ID, &status);
-    if(status != previous_status)
+
+    if((status != previous_status) || (previous_request_status != E_OK))
     {
         if(status == USER_BUTTON_HIGH)
         {
-            ret_val = Rte_Call_RP_AEBSetting_Enable();
+            previous_request_status = Rte_Call_RP_AEBSetting_Enable();
         }
         else if(status == USER_BUTTON_LOW)
         {
-            Rte_Call_RP_AEBSetting_Disable();
+            previous_request_status = Rte_Call_RP_AEBSetting_Disable();
         }
     }
     previous_status = status;

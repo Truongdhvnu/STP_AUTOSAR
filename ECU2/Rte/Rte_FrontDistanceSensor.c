@@ -32,6 +32,8 @@ extern FUNC(void, RTE_CODE) Rte_ReadDistance_5ms( VAR(void, AUTOMATIC) ) ;
 TASK (Task_DistanceSensor) {
     VAR(EventMaskType, AUTOMATIC) Event;
 
+    Parameter_Init();
+    
     while( 1 )
     {
         (VAR(void, AUTOMATIC))WaitEvent( Rte_Ev_ReadDistance_5ms );
